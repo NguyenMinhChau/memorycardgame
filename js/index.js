@@ -159,9 +159,9 @@ function startHeartAnimation() {
 		heart.style.setProperty('--direction', Math.random() > 0.5 ? 1 : -1);
 		heartContainer.appendChild(heart);
 
-		setTimeout(() => {
-			heart.remove();
-		}, 4000);
+		// setTimeout(() => {
+		// 	heart.remove();
+		// }, 4000);
 	}
 
 	for (let i = 0; i < 50; i++) {
