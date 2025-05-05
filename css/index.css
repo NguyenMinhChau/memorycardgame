@@ -77,7 +77,7 @@ body::before {
 	position: relative;
 	width: 100%;
 	max-width: 760px;
-	/* height: 580px; */
+	height: 600px;
 	align-content: flex-start;
 	/* justify-content: space-between; */
 	backdrop-filter: blur(8px);
