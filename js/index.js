@@ -43,11 +43,11 @@ function createCard(imagePath, index) {
 
 function setupGame() {
 	const gameContainer = document.getElementById('gameContainer');
+	// <div class="wedding-names">🔥❤️ Mai Anh & Minh Tuấn ❤️🔥</div>
 	gameContainer.innerHTML = `
       <div class="heart-container" id="heartContainer"></div>
       <div class="wedding-container" id="weddingContainer">
           <img class="wedding-image" src="../assets/image/01.jpg" alt="IMAGE">
-          // <div class="wedding-names">🔥❤️ Mai Anh & Minh Tuấn ❤️🔥</div>
           <div class="wedding-message">Chúc mừng hạnh phúc hai bạn. Chúc hai bạn bên nhau đầu bạc răng long, sớm có thiên thần nhỏ nhé!</div>
       </div>
   `;
