@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Memory Card Game</title>
+		<link rel="icon" href="./assets/image/heart_image.png" type="image/png" />
+		<meta property="og:image" content="./assets/image/heart_image.png" />
+		<link rel="stylesheet" href="./css/index.css" />
+	</head>
+	<body>
+		<div class="game-wrapper">
+			<div class="score-board">
+				<div>Cặp khớp: <span id="matches">0</span>/10</div>
+				<div>Lượt chơi: <span id="flips">0</span></div>
+			</div>
+			<div class="game-container" id="gameContainer">
+				<div class="heart-container" id="heartContainer"></div>
+				<div class="wedding-container" id="weddingContainer">
+					<img class="wedding-image" src="./assets/image/01.jpg" alt="IMAGE" />
+					<div class="wedding-names">🔥❤️ Mai Anh & Minh Tuấn ❤️🔥</div>
+					<div class="wedding-message">
+						Chúc Mai Anh & Minh Tuấn trăm năm hạnh phúc, mãi bên nhau trong ngày
+						trọng đại!
+					</div>
+				</div>
+			</div>
+			<div class="reset-button-container">
+				<button class="reset-button" id="resetButton" onclick="resetGame()">
+					Chơi lại
+				</button>
+			</div>
+		</div>
+
+		<script src="./js/index.js"></script>
+	</body>
+</html>

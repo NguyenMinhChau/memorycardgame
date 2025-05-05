@@ -1,0 +1,527 @@
+body {
+	margin: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: url('https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg')
+		no-repeat center center fixed;
+	background-size: cover;
+	font-family: 'Poppins', sans-serif;
+	color: #fff;
+	overflow-x: hidden;
+	position: relative;
+}
+
+body::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	backdrop-filter: blur(5px);
+	z-index: -1;
+}
+
+.game-wrapper {
+	text-align: center;
+	position: relative;
+	width: 100%;
+	/* max-width: 780px; */
+	padding: 0 20px;
+	box-sizing: border-box;
+}
+
+.score-board {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	max-width: 760px;
+	margin: 0 auto 20px;
+	padding: 15px 20px;
+	background: linear-gradient(
+		45deg,
+		rgba(255, 255, 255, 0.1),
+		rgba(255, 255, 255, 0.2)
+	);
+	border-radius: 12px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	font-family: 'Cormorant Garamond', serif;
+}
+
+.score-board div {
+	font-size: 1.4rem;
+	font-weight: 600;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.game-container {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 15px;
+	perspective: 1200px;
+	/* background: linear-gradient(
+		135deg,
+		rgba(255, 255, 255, 0.05),
+		rgba(255, 255, 255, 0.15)
+	); */
+	/* box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); */
+	padding: 20px;
+	border-radius: 20px;
+	border: 2px solid transparent;
+	background-clip: padding-box;
+	position: relative;
+	width: 100%;
+	max-width: 760px;
+	/* height: 580px; */
+	align-content: flex-start;
+	/* justify-content: space-between; */
+	backdrop-filter: blur(8px);
+	margin: 0 auto;
+}
+
+.game-container::before {
+	content: '';
+	position: absolute;
+	top: -2px;
+	left: -2px;
+	right: -2px;
+	bottom: -2px;
+	z-index: -1;
+	/* background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ffd700); */
+	background-color: rgba(255, 255, 255, 0.3);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 20px;
+}
+
+.card {
+	width: 140px;
+	height: 140px;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+	cursor: pointer;
+	border-radius: 12px;
+	flex: 0 0 140px; /* Ensure fixed width for 5 columns */
+}
+
+.card:hover {
+	box-shadow: 0 0 20px rgba(255, 255, 255, 0.7),
+		0 0 30px rgba(255, 182, 193, 0.5);
+}
+
+.card.flipped {
+	transform: rotateY(180deg);
+}
+
+.card.matched {
+	animation: matchAnimation 0.5s ease-in-out;
+}
+
+.card-face {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	backface-visibility: hidden;
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.front-face {
+	background: #2d2d2d;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transform: rotateY(180deg);
+}
+
+.front-face img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 12px;
+}
+
+.back-face {
+	background: url('../assets/image/heart_image.png') no-repeat center center;
+	background-size: cover;
+	position: relative;
+}
+
+.back-face::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	/* background: rgba(0, 0, 0, 0.1); */
+	border-radius: 12px;
+}
+
+@keyframes matchAnimation {
+	0% {
+		transform: scale(1) rotateY(180deg);
+	}
+	50% {
+		transform: scale(1.2) rotateY(180deg);
+	}
+	100% {
+		transform: scale(1) rotateY(180deg);
+	}
+}
+
+.card-heart-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	z-index: 10;
+}
+
+.card-heart {
+	position: absolute;
+	font-size: 1rem;
+	color: #ff4d4d;
+	opacity: 0;
+	animation: cardHeartFloat 1.5s ease-in-out forwards;
+}
+
+@keyframes cardHeartFloat {
+	0% {
+		opacity: 0.8;
+		transform: translateY(0) scale(1) translateX(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-60px) scale(1.5)
+			translateX(calc(var(--direction) * 20px));
+	}
+}
+
+.heart-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	display: none;
+	z-index: 10;
+}
+
+.heart {
+	position: absolute;
+	font-size: 1.5rem;
+	color: #ff4d4d;
+	opacity: 0;
+	animation: heartFloat 3s ease-in-out forwards;
+}
+
+@keyframes heartFloat {
+	0% {
+		opacity: 0.8;
+		transform: translateY(0) scale(1) translateX(0);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-300px) scale(2)
+			translateX(calc(var(--direction) * 100px));
+	}
+}
+
+.wedding-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	z-index: 11;
+	text-align: center;
+}
+
+.wedding-image {
+	width: 320px;
+	height: 320px;
+	object-fit: cover;
+	border-radius: 20px;
+	margin-bottom: 25px;
+	box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(255, 182, 193, 0.7);
+	animation: pulse 2s infinite ease-in-out;
+}
+
+.wedding-names {
+	font-size: 2rem;
+	font-weight: 700;
+	font-family: 'Cormorant Garamond', serif;
+	margin-bottom: 20px;
+	text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+	animation: fireHeart 1.5s infinite alternate;
+}
+
+.wedding-message {
+	font-size: 1.3rem;
+	font-weight: 400;
+	max-width: 85%;
+	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+	opacity: 0;
+	animation: fadeIn 2s forwards 1s;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(1);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
+@keyframes fireHeart {
+	0% {
+		transform: scale(1);
+	}
+	100% {
+		transform: scale(1.1);
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.reset-button-container {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	max-width: 740px;
+	margin: 20px auto 0;
+}
+
+.reset-button {
+	padding: 15px 40px;
+	font-size: 1.4rem;
+	font-weight: 700;
+	font-family: 'Cormorant Garamond', serif;
+	border: none;
+	border-radius: 50px;
+	background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ffd700);
+	background-size: 200% 100%;
+	color: #fff;
+	cursor: pointer;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+	transition: transform 0.3s, box-shadow 0.3s;
+	display: none;
+	animation: gradientShift 3s infinite linear;
+}
+
+.reset-button:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes gradientShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	100% {
+		background-position: 200% 50%;
+	}
+}
+
+/* Tablet (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+	.game-wrapper {
+		padding: 0 15px;
+	}
+
+	.score-board {
+		max-width: 580px;
+		padding: 12px 15px;
+	}
+
+	.score-board div {
+		font-size: 1.2rem;
+	}
+
+	.game-container {
+		max-width: 570px;
+		height: 470px;
+		padding: 15px;
+		gap: 10px;
+	}
+
+	.card {
+		width: 105px;
+		height: 105px;
+		flex: 0 0 105px;
+	}
+
+	.wedding-image {
+		width: 240px;
+		height: 240px;
+		margin-bottom: 20px;
+	}
+
+	.wedding-names {
+		font-size: 1.6rem;
+		margin-bottom: 15px;
+	}
+
+	.wedding-message {
+		font-size: 1.1rem;
+		max-width: 90%;
+	}
+
+	.reset-button-container {
+		max-width: 580px;
+	}
+
+	.reset-button {
+		padding: 12px 30px;
+		font-size: 1.2rem;
+	}
+
+	.heart {
+		font-size: 1.2rem;
+	}
+
+	@keyframes heartFloat {
+		0% {
+			opacity: 0.8;
+			transform: translateY(0) scale(1) translateX(0);
+		}
+		100% {
+			opacity: 0;
+			transform: translateY(-200px) scale(1.8)
+				translateX(calc(var(--direction) * 80px));
+		}
+	}
+}
+
+/* Mobile (<768px) */
+@media screen and (max-width: 767px) {
+	.game-wrapper {
+		padding: 0 10px;
+	}
+
+	.score-board {
+		max-width: 320px;
+		padding: 10px 12px;
+	}
+
+	.score-board div {
+		font-size: 1rem;
+	}
+
+	.game-container {
+		max-width: 330px;
+		height: 410px;
+		padding: 10px;
+		gap: 8px;
+		border-radius: 15px;
+	}
+
+	.game-container::before {
+		border-radius: 15px;
+	}
+
+	.card {
+		width: 75px;
+		height: 75px;
+		border-radius: 8px;
+		flex: 0 0 75px;
+	}
+
+	.card-face {
+		border-radius: 8px;
+	}
+
+	.front-face img {
+		border-radius: 8px;
+	}
+
+	.back-face::before {
+		border-radius: 8px;
+	}
+
+	.wedding-image {
+		width: 180px;
+		height: 180px;
+		margin-bottom: 15px;
+		border-radius: 15px;
+	}
+
+	.wedding-names {
+		font-size: 1.3rem;
+		margin-bottom: 10px;
+	}
+
+	.wedding-message {
+		font-size: 0.9rem;
+		max-width: 95%;
+	}
+
+	.reset-button-container {
+		max-width: 420px;
+	}
+
+	.reset-button {
+		padding: 10px 25px;
+		font-size: 1rem;
+		border-radius: 40px;
+	}
+
+	.card-heart {
+		font-size: 0.8rem;
+	}
+
+	@keyframes cardHeartFloat {
+		0% {
+			opacity: 0.8;
+			transform: translateY(0) scale(1) translateX(0);
+		}
+		100% {
+			opacity: 0;
+			transform: translateY(-40px) scale(1.3)
+				translateX(calc(var(--direction) * 15px));
+		}
+	}
+
+	.heart {
+		font-size: 1rem;
+	}
+
+	@keyframes heartFloat {
+		0% {
+			opacity: 0.8;
+			transform: translateY(0) scale(1) translateX(0);
+		}
+		100% {
+			opacity: 0;
+			transform: translateY(-150px) scale(1.5)
+				translateX(calc(var(--direction) * 60px));
+		}
+	}
+}
