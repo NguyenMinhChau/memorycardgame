@@ -27,11 +27,11 @@ function createCard(imagePath, index) {
 	const card = document.createElement('div');
 	card.classList.add('card');
 	card.innerHTML = `
-      <div class="card-face front-face">
+      <div class="card-face front-face" style="position: absolute; z-index: 9999">
           <img src="${imagePath}" alt="Card Image">
       </div>
       <div class="card-face back-face" style="position: relative">
-        <div style="position: absolute; top: 50%; left: 50%; z-index: 999; font-weight: bold; font-size: 20px; color: #FFF; transform: translateX(-50%) translateY(-50%);">${
+        <div class="index_card" style="position: absolute; top: 50%; left: 50%; z-index: 999; font-weight: bold; font-size: 20px; color: #FFF; transform: translateX(-50%) translateY(-50%);">${
 					index + 1
 				}</div>
       </div>
