@@ -76,8 +76,8 @@ body::before {
 	background-clip: padding-box;
 	position: relative;
 	width: 100%;
-	max-width: 760px;
-	height: 600px;
+	max-width: 65%;
+	height: 90%;
 	align-content: flex-start;
 	/* justify-content: space-between; */
 	backdrop-filter: blur(8px);
@@ -100,14 +100,14 @@ body::before {
 }
 
 .card {
-	width: 140px;
-	height: 140px;
 	position: relative;
 	transform-style: preserve-3d;
 	transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 	cursor: pointer;
 	border-radius: 12px;
-	flex: 0 0 140px; /* Ensure fixed width for 5 columns */
+	width: 230px;
+	height: 200px;
+	flex: 0 0 230px; /* Ensure fixed width for 5 columns */
 }
 
 .card:hover {
