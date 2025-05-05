@@ -23,14 +23,18 @@ function shuffle(array) {
 	return array;
 }
 
-function createCard(imagePath) {
+function createCard(imagePath, index) {
 	const card = document.createElement('div');
 	card.classList.add('card');
 	card.innerHTML = `
       <div class="card-face front-face">
           <img src="${imagePath}" alt="Card Image">
       </div>
-      <div class="card-face back-face"></div>
+      <div class="card-face back-face" style="position: relative">
+        <div style="position: absolute; top: 50%; left: 50%; z-index: 999; font-weight: bold; font-size: 20px; color: #FFF; transform: translateX(-50%) translateY(-50%);">${
+					index + 1
+				}</div>
+      </div>
       <div class="card-heart-container"></div>
   `;
 	card.addEventListener('click', () => flipCard(card));
@@ -47,8 +51,8 @@ function setupGame() {
           <div class="wedding-message">Chúc mừng hạnh phúc hai bạn. Chúc hai bạn bên nhau đầu bạc răng long, sớm có thiên thần nhỏ nhé!</div>
       </div>
   `;
-	shuffle(cards).forEach((imagePath) => {
-		const card = createCard(imagePath);
+	shuffle(cards).forEach((imagePath, index) => {
+		const card = createCard(imagePath, index);
 		gameContainer.appendChild(card);
 	});
 	flips = 0;
