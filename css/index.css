@@ -79,7 +79,7 @@ body::before {
 	max-width: 98%;
 	min-height: 430px;
 	align-content: flex-start;
-	justify-content: space-around;
+	/* justify-content: space-around; */
 	backdrop-filter: blur(8px);
 	margin: 0 auto;
 }
@@ -100,14 +100,14 @@ body::before {
 }
 
 .card {
-	width: 225px;
+	width: calc((100% - 100px) / 7);;
 	height: 200px;
 	position: relative;
 	transform-style: preserve-3d;
 	transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 	cursor: pointer;
 	border-radius: 12px;
-	flex: 0 0 225px; /* Ensure fixed width for 5 columns */
+	flex: 0 0 calc((100% - 100px) / 7);; /* Ensure fixed width for 7 columns */
 }
 
 .card:hover {
