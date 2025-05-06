@@ -95,8 +95,10 @@ function checkMatch() {
 		startCardHeartAnimation(card1);
 		startCardHeartAnimation(card2);
 		setTimeout(() => {
-			card1.style.display = 'none';
-			card2.style.display = 'none';
+			// card1.style.display = 'none';
+			// card2.style.display = 'none';
+			card1.style.visibility = 'hidden';
+			card2.style.visibility = 'hidden';
 		}, 1500);
 
 		flippedCards = [];
