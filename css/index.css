@@ -79,7 +79,7 @@ body::before {
 	max-width: 98%;
 	min-height: 430px;
 	align-content: flex-start;
-	justify-content: space-between;
+	justify-content: space-around;
 	backdrop-filter: blur(8px);
 	margin: 0 auto;
 }
