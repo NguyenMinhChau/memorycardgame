@@ -6,9 +6,6 @@ const imagePaths = [
 	'../assets/image/05.jpg',
 	'../assets/image/06.jpg',
 	'../assets/image/07.jpg',
-	'../assets/image/08.jpg',
-	'../assets/image/09.jpg',
-	'../assets/image/10.jpg',
 ];
 let cards = [...imagePaths, ...imagePaths];
 let flippedCards = [];
@@ -47,8 +44,14 @@ function setupGame() {
 	gameContainer.innerHTML = `
       <div class="heart-container" id="heartContainer"></div>
       <div class="wedding-container" id="weddingContainer">
-          <img class="wedding-image" src="../assets/image/01.jpg" alt="IMAGE">
-          <div class="wedding-message">Chúc mừng hạnh phúc hai bạn. Chúc hai bạn bên nhau đầu bạc răng long, sớm có thiên thần nhỏ nhé!</div>
+					<div class="scroll_image" style="display: flex; gap: 5px; align-items: center; max-width: 95%; overflow: scroll">
+          	<img class="wedding-image" src="../assets/image/06.jpg" alt="IMAGE">
+          	<img class="wedding-image" src="../assets/image/07.jpg" alt="IMAGE">
+          	<img class="wedding-image" src="../assets/image/08.jpg" alt="IMAGE">
+          	<img class="wedding-image" src="../assets/image/09.jpg" alt="IMAGE">
+          	<img class="wedding-image" src="../assets/image/10.jpg" alt="IMAGE">
+					</div>
+          <div style="margin-top: 10px" class="wedding-message">Chúc mừng hạnh phúc hai bạn. Chúc hai bạn bên nhau đầu bạc răng long, sớm có thiên thần nhỏ nhé!</div>
       </div>
   `;
 	shuffle(cards).forEach((imagePath, index) => {
